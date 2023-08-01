@@ -52,7 +52,8 @@ body {
 }
 
 .medium {
-  font-size: 1rem;
+  font-size: 1.3rem;
+  font-weight: bold;
   margin-bottom: .5rem;
   text-align: left;
 }
@@ -75,7 +76,7 @@ body {
   margin-bottom: 2rem;
 }
 
-.input-container {
+.container {
   width: 80%;
   max-width: 500px;
   display: grid;
@@ -143,10 +144,81 @@ input[type="text"] {
   right: 10px;
 }
 
-@media (max-width: 600px) {
-  .input-container {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+.output-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: -30px;
+}
+
+.output-group .left {
+  text-align: left;
+}
+
+.output-group .right {
+  text-align: right;
+}
+
+#output-container {
+  margin-top: 3rem;
+  margin-bottom: 6rem;
+}
+
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+
+.btn-secondary {
+  background-color: #F6F8FA;
+  color: #24292F;
+  border: 1px solid rgba(31, 35, 40, 0.15);
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.btn-secondary:hover {
+  background-color: #F3F4F6;
+  border: 1px solid rgba(31, 35, 40, 0.15);
+}
+
+.btn-secondary:active {
+  background-color: #EEEFF2;
+  border: 1px solid rgba(31, 35, 40, 0.15);
+}
+
+.btn-primary {
+  background-color: #1F883D;
+  color: #FFFFFF;
+  border: 1px solid rgba(31, 35, 40, 0.15);
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+  background-color: #1A7F37;
+  border: 1px solid rgba(31, 35, 40, 0.15);
+}
+
+.btn-primary:active {
+  background-color: #187733;
+  border: 1px solid rgba(31, 35, 40, 0.15);
+}
+
+@media (max-width: 650px) {
+
+  .button-row {
+    flex-direction: column; /* Stack buttons on top of each other */
+    gap: 1rem; /* Add spacing between buttons */
+  }
+
+  .btn-secondary,
+  .btn-primary {
+    width: 100%; /* Stretch buttons to full width */
   }
 
   #time-saved {
@@ -163,4 +235,29 @@ input[type="text"] {
     padding-right: 20px; /* To account for the right overlay symbols */
     padding-left: 0; /* Reset the left padding */
   }
+}
+
+@media (max-width: 380px) {
+
+  .container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  #output-container,
+  .large {
+    overflow: hidden; /* This will ensure elements do not go past right edge */
+  }
+
+  .output-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .output-group .right {
+    margin-top: 0.5rem;
+    text-align: left;
+    margin-top: -5px;
+  }
+
 }

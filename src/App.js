@@ -8,11 +8,19 @@ function App() {
   const [percentCodingTime, setPercentCodingTime] = useState(40);
   const [timeSavedPerTask, setTimeSavedPerTask] = useState(55);
 
+  const safeValue = (value) => {
+    return isNaN(value) ? 0 : value;
+  };
+
   const formatAvgCompensation = (value) => {
     const numValue = parseInt(value.replace(/,/g, ''), 10);
     if (isNaN(numValue)) return ""; 
     return numValue.toLocaleString(); 
   };
+
+  const commaAdd = (x) => {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
 
   const handleInputChange = (value, setter, formatFunction) => {
     if (formatFunction) {
@@ -21,6 +29,12 @@ function App() {
       setter(Math.max(0, value)); 
     }
   }
+
+  const numAvgCompensation = safeValue(parseInt(avgCompensation.replace(/,/g, ''), 10));
+  const hoursSaved = Math.round(safeValue(numDevelopers * avgWorkHours * (percentCodingTime/100) * (timeSavedPerTask/100)));
+  const moneySaved = Math.round(safeValue(numAvgCompensation / avgWorkHours * hoursSaved));
+  const copilotCost = numDevelopers === 1 ? numDevelopers * 10 * 12 : numDevelopers * 19 * 12;
+  const roi = moneySaved - copilotCost;
 
   return (
     <div className="App">
@@ -31,7 +45,8 @@ function App() {
         <p className="small" id="subheader">
           Find out your potential annual savings with GitHub Copilot
         </p>
-        <div className="input-container">
+
+        <div className="container">
           <div className="input-group">
             <label htmlFor="num-developers" className="small-bold">Number of developers</label>
             <input
@@ -101,6 +116,46 @@ function App() {
             </div>
           </div>
         </div>
+
+        <div className="container" id="output-container">
+          <p className="full-width medium">
+            Total savings
+          </p>
+
+          <div className="output-group full-width" id="hours-saved">
+            <p className="left small">Time saved</p>
+            <p className="right small">{commaAdd(hoursSaved)} hours / year</p>
+          </div>
+
+          <div className="output-group full-width" id="money-saved">
+            <p className="left small">Money saved</p>
+            <p className="right small">${moneySaved.toLocaleString()} / year</p>
+          </div>
+
+          <div className="output-group full-width" id="copilot-pricing">
+            {
+              numDevelopers === 1 ? (
+                <p className="left small">Copilot for Individuals ($10 / month)</p>
+              ) : (
+                <p className="left small">Copilot for Business ($19 / user / month)</p>
+              )
+            }
+            <p className="right small">${copilotCost.toLocaleString()} / year</p>
+          </div>
+
+          <div className="output-group full-width" id="money-saved">
+            <p className="left small">Return on investment</p>
+            <p className="right small">${roi.toLocaleString()} / year</p>
+          </div>
+
+          <div className="button-row full-width">
+            <button className="btn-secondary">Start a free trial</button>
+            <button className="btn-secondary">Request Copilot</button>
+            <button className="btn-primary">Buy Copilot for Business</button>
+          </div>
+
+        </div>
+
       </header>
     </div>
   );
