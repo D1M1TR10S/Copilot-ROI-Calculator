@@ -149,9 +149,15 @@ function App() {
           </div>
 
           <div className="button-row full-width">
-            <button className="btn-secondary">Start a free trial</button>
-            <button className="btn-secondary">Request Copilot</button>
-            <button className="btn-primary">Buy Copilot for Business</button>
+            <a href="https://github.com/github-copilot/signup" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+                <button className="btn-secondary">Start a free trial</button>
+            </a>
+            <a href="https://github.com/settings/copilot" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+                <button className="btn-secondary">Request Copilot</button>
+            </a>
+            <a href="https://github.com/github-copilot/business_signup" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+                <button className="btn-primary">Buy Copilot for Business</button>
+            </a>
           </div>
 
         </div>
