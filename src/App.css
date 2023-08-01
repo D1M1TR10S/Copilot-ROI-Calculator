@@ -1,31 +1,57 @@
+body {
+  background-color: #fff;
+  font-family: "SF Pro Text", sans-serif;
+  color: #1f2328;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
 .App-header {
-  background-color: #282c34;
+  background-color: #fff;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #1f2328;
 }
 
-.App-link {
-  color: #61dafb;
+.large {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
 }
 
-.heart {
-  color: #ff0000;
+.medium {
+  font-size: 1rem;
+  margin-bottom: 2rem;
 }
 
-.small {
-  font-size: 0.75rem;
+.input-container {
+  width: 80%; /* Change this to adjust the width of your grid */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+input[type="number"],
+input[type="text"] {
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  padding: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .input-container {
+    grid-template-columns: 1fr; /* One column on smaller screens */
+  }
 }
