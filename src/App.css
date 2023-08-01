@@ -1,11 +1,26 @@
+/* Works for Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Works for Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
 body {
   background-color: #fff;
   font-family: "SF Pro Text", sans-serif;
   color: #1f2328;
+  text-align: left;
 }
 
 .App {
-  text-align: center;
+  text-align: left;
+  padding: 1rem;
 }
 
 .App-header {
@@ -13,45 +28,139 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: left;
+  justify-content: left;
   font-size: calc(10px + 2vmin);
   color: #1f2328;
+  padding: 1rem;
 }
 
 .large {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.large::after {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  left: 0;
+  height: 1px;
+  width: 100%;
+  background-color: #d0d7de;
 }
 
 .medium {
   font-size: 1rem;
+  margin-bottom: .5rem;
+  text-align: left;
+}
+
+.small {
+  font-size: .9rem;
+  margin-bottom: .5rem;
+  text-align: left;
+  font-weight: 400;
+}
+
+.small-bold {
+  font-size: .9rem;
+  margin-bottom: .5rem;
+  text-align: left;
+  font-weight: bold;
+}
+
+#subheader {
   margin-bottom: 2rem;
 }
 
 .input-container {
-  width: 80%; /* Change this to adjust the width of your grid */
+  width: 80%;
+  max-width: 500px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
+  gap: 2rem;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  padding: 2rem;
 }
 
 .input-group {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+}
+
+.input-group__label {
+  width: 100%;
+  text-align: left;
+}
+
+.input-fields {
+  width: 100%; /* This should make sure every input takes full width of its container */
+}
+
+.full-width {
+  grid-column: 1 / -1; /* This ensures the input takes full width of the grid */
+  width: 100%;
 }
 
 input[type="number"],
 input[type="text"] {
   border: 1px solid #d0d7de;
   border-radius: 6px;
-  padding: 0.5rem;
+  padding: .5rem 1rem;
+  width: 100%; /* 100% width for all inputs */
+  transition: border-color 0.2s ease-in-out;
+  font-size: 12px;
+}
+
+.input-overlay {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%; /* 100% width to match other inputs */
+}
+
+.input-symbol {
+  position: absolute;
+  pointer-events: none;
+  width: 20px;
+  margin-left: 12px;
+}
+
+.overlay-input {
+  padding-left: 20px; /* to counteract the width of the symbol, might need to adjust to suit the design */
+  box-sizing: border-box; /* to include padding in width calculation */
+}
+
+#avg-compensation {
+  padding-left: 25px;
+}
+
+.right {
+  right: 10px;
 }
 
 @media (max-width: 600px) {
   .input-container {
-    grid-template-columns: 1fr; /* One column on smaller screens */
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  #time-saved {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .overlay-input {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .overlay-input.right {
+    padding-right: 20px; /* To account for the right overlay symbols */
+    padding-left: 0; /* Reset the left padding */
   }
 }
