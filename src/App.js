@@ -135,9 +135,9 @@ function App() {
           <div className="output-group full-width" id="copilot-pricing">
             {
               numDevelopers === 1 ? (
-                <p className="left small">Copilot for Individuals ($10 / month)</p>
+                <p className="left small">Copilot for Individuals Cost ($10 / month)</p>
               ) : (
-                <p className="left small">Copilot for Business ($19 / user / month)</p>
+                <p className="left small">Copilot for Business Cost ($19 / user / month)</p>
               )
             }
             <p className="right small">${copilotCost.toLocaleString()} / year</p>
