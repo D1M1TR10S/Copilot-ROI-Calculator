@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Copilot-ROI-Calculator/static/css/main.040b49ab.css",
+    "main.js": "/Copilot-ROI-Calculator/static/js/main.b7601af9.js",
+    "static/js/496.0320d045.chunk.js": "/Copilot-ROI-Calculator/static/js/496.0320d045.chunk.js",
+    "index.html": "/Copilot-ROI-Calculator/index.html",
+    "main.040b49ab.css.map": "/Copilot-ROI-Calculator/static/css/main.040b49ab.css.map",
+    "main.b7601af9.js.map": "/Copilot-ROI-Calculator/static/js/main.b7601af9.js.map",
+    "496.0320d045.chunk.js.map": "/Copilot-ROI-Calculator/static/js/496.0320d045.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.040b49ab.css",
+    "static/js/main.b7601af9.js"
+  ]
+}
