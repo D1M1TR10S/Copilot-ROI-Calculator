@@ -8,6 +8,7 @@ function App() {
   const [percentCodingTime, setPercentCodingTime] = useState(40);
   const [timeSavedPerTask, setTimeSavedPerTask] = useState(55);
 
+
   const safeValue = (value) => {
     return isNaN(value) ? 0 : value;
   };
@@ -21,6 +22,7 @@ function App() {
   const commaAdd = (x) => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
+  // Use int'l format 
 
   const handleInputChange = (value, setter, formatFunction) => {
     if (formatFunction) {
@@ -30,10 +32,20 @@ function App() {
     }
   }
 
+  const currencyFormat = useCallback(() => {
+    return new Intl.NumberFormat().format
+  }, [])
+
+
   const numAvgCompensation = safeValue(parseInt(avgCompensation.replace(/,/g, ''), 10));
-  const hoursSaved = Math.round(safeValue(numDevelopers * avgWorkHours * (percentCodingTime/100) * (timeSavedPerTask/100)));
+
+  const hoursSaved = useMemo(() => {
+    const hoursSavedCalc = Math.round(safeValue(numDevelopers * avgWorkHours * (percentCodingTime/100) * (timeSavedPerTask/100)));
+    return currencyFormat(hoursSavedCalc)
+  }, [numDevelopers, avgWorkHours, percentCodingTime, timeSavedPerTask, currencyFormat])
+
   const moneySaved = Math.round(safeValue(numAvgCompensation / avgWorkHours * hoursSaved));
-  const copilotCost = numDevelopers === 1 ? numDevelopers * 10 * 12 : numDevelopers * 19 * 12;
+  const copilotCost = safeValue(numDevelopers === 1 ? numDevelopers * 10 * 12 : numDevelopers * 19 * 12);
   const roi = moneySaved - copilotCost;
 
   return (
@@ -124,7 +136,7 @@ function App() {
 
           <div className="output-group full-width" id="hours-saved">
             <p className="left small">Time saved</p>
-            <p className="right small">{commaAdd(hoursSaved)} hours / year</p>
+            <p className="right small">{hoursSaved} hours / year</p>
           </div>
 
           <div className="output-group full-width" id="money-saved">
@@ -135,9 +147,9 @@ function App() {
           <div className="output-group full-width" id="copilot-pricing">
             {
               numDevelopers === 1 ? (
-                <p className="left small">Copilot for Individuals ($10 / month)</p>
+                <p className="left small">Copilot for Individuals Cost ($10 / month)</p>
               ) : (
-                <p className="left small">Copilot for Business ($19 / user / month)</p>
+                <p className="left small">Copilot for Business Cost ($19 / user / month)</p>
               )
             }
             <p className="right small">${copilotCost.toLocaleString()} / year</p>
